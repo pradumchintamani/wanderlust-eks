@@ -37,7 +37,7 @@ jobs:
       - name: Configure kubectl
         run: |
           mkdir -p ~/.kube
-          echo "$KUBE_CONFIG_DATA" | base64 -d > ~/.kube/config
+          echo "${{ secrets.KUBE_CONFIG }}" | base64 -d > ~/.kube/config
           kubectl version --client
 
       - name: Create and claim persistent volume
