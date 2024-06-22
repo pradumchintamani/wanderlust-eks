@@ -26,6 +26,7 @@ jobs:
 
       - name: Create and claim persistent volume
         run: |
+          sudo su
           kubectl apply -f kubernetes/persistentVolume.yaml 
           kubectl apply -f kubernetes/persistentVolumeClaim.yaml
 
