@@ -20,7 +20,8 @@ jobs:
       - name: Create and claim persistent volume
         run: |
           cd kubernetes
-          # sudo su
+          whoami
+          sudo su
           kubectl apply -f persistentVolume.yaml 
           kubectl apply -f persistentVolumeClaim.yaml
       - name: Deploy MongoDB
