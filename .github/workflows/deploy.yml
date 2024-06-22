@@ -1,0 +1,37 @@
+name: Docker Build and Kubernetes Deploy
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Configure kubectl
+        run: |
+          mkdir -p ~/.kube
+          echo "$KUBE_CONFIG" | base64 -d > ~/.kube/config
+          kubectl version --client
+
+      - name: Create and claim persistent volume
+        run: |
+          # cd kubernetes
+          # sudo su
+          kubectl apply -f persistentVolume.yaml 
+          kubectl apply -f persistentVolumeClaim.yaml
+      - name: Deploy MongoDB
+        run: |
+          kubectl apply -f mongodb.yaml
+      - name: Deploy Redis
+        run: |
+          kubectl apply -f redis.yaml
+      - name: Deploy Backend
+        run: |
+          kubectl apply -f backend.yaml
+      - name: Deploy Frontend
+        run: |
+          kubectl apply -f frontend.yaml
