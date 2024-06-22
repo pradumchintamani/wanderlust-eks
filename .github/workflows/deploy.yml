@@ -13,26 +13,27 @@ jobs:
 
       - name: Configure kubectl
         run: |
-          mkdir -p ~/.kube
-          echo "$KUBE_CONFIG" | base64 -d > ~/.kube/config
-          kubectl version --client
+          # mkdir -p ~/.kube
+          # echo "$KUBE_CONFIG" | base64 -d > ~/.kube/config
+          # kubectl version --client
+          ls 
 
-      - name: Create and claim persistent volume
-        run: |
-          cd kubernetes
-          whoami
-          sudo su
-          kubectl apply -f persistentVolume.yaml 
-          kubectl apply -f persistentVolumeClaim.yaml
-      - name: Deploy MongoDB
-        run: |
-          kubectl apply -f mongodb.yaml
-      - name: Deploy Redis
-        run: |
-          kubectl apply -f redis.yaml
-      - name: Deploy Backend
-        run: |
-          kubectl apply -f backend.yaml
-      - name: Deploy Frontend
-        run: |
-          kubectl apply -f frontend.yaml
+      # - name: Create and claim persistent volume
+      #   run: |
+      #     cd kubernetes
+      #     whoami
+      #     sudo su
+      #     kubectl apply -f persistentVolume.yaml 
+      #     kubectl apply -f persistentVolumeClaim.yaml
+      # - name: Deploy MongoDB
+      #   run: |
+      #     kubectl apply -f mongodb.yaml
+      # - name: Deploy Redis
+      #   run: |
+      #     kubectl apply -f redis.yaml
+      # - name: Deploy Backend
+      #   run: |
+      #     kubectl apply -f backend.yaml
+      # - name: Deploy Frontend
+      #   run: |
+      #     kubectl apply -f frontend.yaml
