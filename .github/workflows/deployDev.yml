@@ -1,4 +1,4 @@
-name: Docker Build and Push
+name: Build and deploy MERN stack
 on:
   workflow_dispatch:
 
