@@ -16,7 +16,7 @@ jobs:
           # mkdir -p ~/.kube
           # echo "$KUBE_CONFIG" | base64 -d > ~/.kube/config
           # kubectl version --client
-          ls 
+          whoami 
 
       # - name: Create and claim persistent volume
       #   run: |
