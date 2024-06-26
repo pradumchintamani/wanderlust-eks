@@ -30,9 +30,8 @@ metadata:
 spec:
   selector:
     app: frontend
-  type: NodePort
+  type: LoadBalancer
   ports:
     - port: 5173
       targetPort: 5173
       protocol: TCP
-      nodePort: 31000
