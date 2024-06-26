@@ -4,11 +4,18 @@ on:
 
 jobs:
   build:
-    runs-on: machine1
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4.1.7
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-region: us-east-1
+          aws-access-key-id: ${{ secrets.AWS_SECRET_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_KEY }}
 
       - name: Login to DockerHub
         uses: docker/login-action@v3.2.0
@@ -24,16 +31,11 @@ jobs:
           docker push hellopradum/backend-wanderlust:latest
           docker push hellopradum/frontend-wanderlust:latest
 
-      - name: Configure kubectl
-        run: |
-          mkdir -p ~/.kube
-          echo "$KUBE_CONFIG" | base64 -d > ~/.kube/config
-          kubectl version --client
+      - name: Update kubeconfig
+        run: aws eks update-kubeconfig --name demo-ekscluster
           
       - name: Create and claim persistent volume
         run: |
-          cd kubernetes
-          sudo su
           kubectl apply -f persistentVolume.yaml 
           kubectl apply -f persistentVolumeClaim.yaml
 
