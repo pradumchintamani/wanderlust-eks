@@ -36,18 +36,18 @@ jobs:
           
       - name: Create and claim persistent volume
         run: |
-          kubectl apply -f persistentVolume.yaml 
-          kubectl apply -f persistentVolumeClaim.yaml
+          kubectl apply -f kubernetes/persistentVolume.yaml 
+          kubectl apply -f kubernetes/persistentVolumeClaim.yaml
 
       - name: Deploy MongoDB
         run: |
-          kubectl apply -f mongodb.yaml
+          kubectl apply -f kubernetes/mongodb.yaml
       - name: Deploy Redis
         run: |
-          kubectl apply -f redis.yaml
+          kubectl apply -f kubernetes/redis.yaml
       - name: Deploy Backend
         run: |
-          kubectl apply -f backend.yaml
+          kubectl apply -f kubernetes/backend.yaml
       - name: Deploy Frontend
         run: |
-          kubectl apply -f frontend.yaml
+          kubectl apply -f kubernetes/frontend.yaml
