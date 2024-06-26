@@ -32,7 +32,7 @@ jobs:
           docker push hellopradum/frontend-wanderlust:latest
 
       - name: Update kubeconfig
-        run: aws eks update-kubeconfig --name  wanderlust-ekscluster
+        run: aws eks update-kubeconfig --name  wanderlust-ekscluster1
           
       # - name: Create and claim persistent volume
       #   run: |
