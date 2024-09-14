@@ -31,23 +31,23 @@ jobs:
           docker push hellopradum/backend-wanderlust:latest
           docker push hellopradum/frontend-wanderlust:latest
 
-      - name: Update kubeconfig
-        run: aws eks update-kubeconfig --name  wanderlust-ekscluster1
+      # - name: Update kubeconfig
+      #   run: aws eks update-kubeconfig --name  wanderlust-ekscluster1
           
-      - name: Create and claim persistent volume
-        run: |
-          kubectl apply -f kubernetes/persistentVolume.yaml 
-          kubectl apply -f kubernetes/persistentVolumeClaim.yaml
+      # - name: Create and claim persistent volume
+      #   run: |
+      #     kubectl apply -f kubernetes/persistentVolume.yaml 
+      #     kubectl apply -f kubernetes/persistentVolumeClaim.yaml
 
-      - name: Deploy MongoDB
-        run: |
-          kubectl apply -f kubernetes/mongodb.yaml
-      - name: Deploy Redis
-        run: |
-          kubectl apply -f kubernetes/redis.yaml
-      - name: Deploy Backend
-        run: |
-          kubectl apply -f kubernetes/backend.yaml
-      - name: Deploy Frontend
-        run: |
-          kubectl apply -f kubernetes/frontend.yaml
+      # - name: Deploy MongoDB
+      #   run: |
+      #     kubectl apply -f kubernetes/mongodb.yaml
+      # - name: Deploy Redis
+      #   run: |
+      #     kubectl apply -f kubernetes/redis.yaml
+      # - name: Deploy Backend
+      #   run: |
+      #     kubectl apply -f kubernetes/backend.yaml
+      # - name: Deploy Frontend
+      #   run: |
+      #     kubectl apply -f kubernetes/frontend.yaml
